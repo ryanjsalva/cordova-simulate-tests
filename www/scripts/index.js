@@ -2,6 +2,7 @@ var app = {
     
     // initialize the app
     init: function() {
+        console.log('device ready, init');
         this.page = $('app');
         this.titlebar = $('titlebar');
         this.goto('navigation.html');
@@ -52,6 +53,10 @@ var app = {
 }
 
 document.addEventListener( 'deviceready', function(e) { app.init(); }, false );
+document.addEventListener( 'pause', function(e) { console.log('pause event'); }, false );
+document.addEventListener( 'resume', function(e) { console.log('resume event'); }, false );
+document.addEventListener( 'searchButton', function(e) { console.log('search event'); }, false );
+document.addEventListener( 'backButton', function(e) { console.log('back event'); }, false );
 
 // convenience function
 function $(str) {
