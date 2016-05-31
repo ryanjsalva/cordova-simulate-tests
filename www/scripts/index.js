@@ -48,6 +48,7 @@ var app = {
     require: function(src) {
         var el = document.createElement('script');
         el.src = src;
+        el.async = true;
         document.head.appendChild(el);   
     }    
 }

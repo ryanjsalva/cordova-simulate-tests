@@ -104,4 +104,6 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.3" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />
+    <plugin name="cordova-plugin-dbmeter" spec="~1.0.3" />
 </widget>
