@@ -15,7 +15,7 @@ app.batteryStatus = {
         var c;
         switch (true) {
             case (s <= 10):
-                c = 'cc0000';
+                c = '#cc0000';
                 break;
             case (s > 10 && s <= 20):
                 c = '#f7941d';

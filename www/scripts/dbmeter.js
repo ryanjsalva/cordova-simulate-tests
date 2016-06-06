@@ -25,7 +25,22 @@ app.dbmeter = {
     },
     
     success: function(db) {
+        var c;
+        switch (true) {
+            case (db > 70 && db < 90):
+                c = '#f7941d';
+                break;
+            case (db >= 90):
+                c = 'cc0000';
+                break;
+            default:
+                c = '#22c064';
+                break;
+        }
+
         this.db.style.width = db + '%';
+        this.db.style.backgroundColor = c;
+
         console.log('DBMeter: ', db);
     },
     

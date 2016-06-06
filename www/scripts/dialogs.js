@@ -30,7 +30,7 @@ app.dialogs = {
             'You are the winner!',  // message
             this.callBack,          // callback
             'Game Over',            // title
-            'Done',                 // buttons
+            ['Done','Cancel'],      // buttons
             'default text'          // default text
         );
     },

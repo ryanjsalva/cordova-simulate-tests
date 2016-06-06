@@ -25,6 +25,7 @@ app.camera = {
 
     // camera returned an error
     error: function(msg) {
+        alert(msg);
         console.error('error: ', msg);
     },
     

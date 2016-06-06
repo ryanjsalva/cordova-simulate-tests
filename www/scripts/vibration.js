@@ -6,7 +6,7 @@ app.vibration = {
     },
     
     vibrate: function() {
-        navigator.vibrate([1000,500,1000,500,1000]);
+        navigator.vibrate([500,500,500,500,500]);
         this.button.className = 'shake';
         window.setTimeout(function(e){
             this.button.className = '';
