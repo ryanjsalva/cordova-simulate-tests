@@ -28,7 +28,18 @@ app.deviceOrientation = {
     },
     
     error: function(error) {
-        console.error('ERROR :', error)
+        // error codes per source code, https://github.com/apache/cordova-plugin-device-orientation/blob/master/www/CompassError.js#L31
+        var msg;
+        switch (error.code) {
+            case 0:
+                msg = 'Compass: internal error';
+            case 20:
+                msg = 'Compass: not supported';
+            default:
+                msg = 'Compass: unknown error';
+        }
+        
+        console.error('ERROR :', msg);
     }
 }
 

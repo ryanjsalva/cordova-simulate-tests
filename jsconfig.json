@@ -1,1 +1,7 @@
-{}
+{
+    "exclude": [
+        "platforms/",
+        "plugins/",
+        "simulation"
+    ]
+}

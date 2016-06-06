@@ -1,12 +1,16 @@
 app.vibration = {
     options: {},
     init: function() {
-        $('start').addEventListener('click', this.vibrate.bind(this));
+        this.button = $('start');
+        this.button.addEventListener('click', this.vibrate.bind(this));
     },
     
     vibrate: function() {
         navigator.vibrate([1000,500,1000,500,1000]);
-        var el = $('start');
+        this.button.className = 'shake';
+        window.setTimeout(function(e){
+            this.button.className = '';
+        }.bind(this), 3000);
     }
 };
 

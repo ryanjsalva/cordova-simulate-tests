@@ -1,5 +1,35 @@
-<h1 class="title">Vibrate</h1>
+<div class="view">
+    <h1 class="title">Vibrate</h1>
+    <button id="start">Vibrate</button>
+</div>
 
-<button id="start">Vibrate</button>
+<style type="text/css">
+    .shake {
+        animation: shake 1s 0 3;
+        background: #cc0000;
+    }
+    
+    @keyframes shake {
+        5%, 45% {
+            transform: translate3d(-1px, 0, 0);
+        }
 
-<div data-script="/scripts/vibration.js"></div>
+        10%, 40% {
+            transform: translate3d(2px, 0, 0);
+        }
+
+        15%, 25%, 35% {
+            transform: translate3d(-4px, 0, 0);
+        }
+
+        20%, 30% {
+            transform: translate3d(4px, 0, 0);
+        }
+        
+        50%, 100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+<div data-script="scripts/vibration.js"></div>

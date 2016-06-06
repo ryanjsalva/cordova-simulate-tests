@@ -34,6 +34,7 @@ app.globalization = {
     },
     
     success: function(result) {
+        alert(JSON.stringify(result));
         console.log('SUCCESS: ', result);
     },
     

@@ -30,11 +30,13 @@ app.camera = {
     
     // getPicture
     getPicture: function() {
+        console.log('getPicture()');
         navigator.camera.getPicture(this.success, this.error, this.options);
     },
     
     // get file URI
     filePicker: function() {
+        console.log('filePicker()');
         var o = this.options;
         o.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
         navigator.camera.getPicture(this.success, this.error, o);
@@ -42,6 +44,7 @@ app.camera = {
     
     // resize pictures as thumbnails
     thumbnails: function() {
+        console.log('thumbnails()');
         var o = this.options;
         o.targetHeight = 100;
         o.targetWidth = 100;

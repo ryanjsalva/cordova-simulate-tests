@@ -1,5 +1,17 @@
-<h1 class="title">DB Meter (custom)</h1>
+<div class="view">
+    <h1 class="title">DB Meter (custom)</h1>
+    <div id="db"></div>
+    <button id="start">Start</button>
+</div>
 
-<button id="start">Start</button>
+<style type="text/css">
+    button.stop {
+        background: #cc0000;
+    }
+    #db {
+        height: 10px;
+        background: #22c064;
+    }
+</style>
 
-<div data-script="/scripts/dbmeter.js"></div>
+<div data-script="scripts/dbmeter.js"></div>

@@ -1,13 +1,55 @@
-<h1 class="title">Device Motion</h1>
+<div class="view">
+    <h1 class="title">Device Motion</h1>
+    <table class="time">
+        <tbody>
+            <tr>
+                <td id="m">00</td>
+                <td>:</td>
+                <td id="s">00</td>
+                <td>:</td>
+                <td id="ms">000</td>
+            </tr>
+            <tr>
+                <td class="label" colspan="2">X</td>
+                <td class="value" colspan="3" id="x">0</td>
+            </tr>
+            <tr>
+                <td class="label" colspan="2">Y</td>
+                <td class="value" colspan="3" id="y">0</td>
+            </tr>
+            <tr>
+                <td class="label" colspan="2">Z</td>
+                <td class="value" colspan="3" id="z">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="watch">Start</div>
+</div>
 
 <style type="text/css">
     button.stop {
         background: #cc0000;
     }
+    table {
+        width: 100%;
+    }
+    #m, #s, #ms {
+        width: 30%;
+    }
+    .time {
+        text-align: center;
+        font-size: 30px;
+    }
+    .label {
+        text-transform: uppercase;
+        color: #666;
+        text-align: right;
+        font-size: 12px;
+        width: 30%;
+    }
+    .value {
+        font-size: 30px;
+    }
 </style>
-<div id="t"><!-- time stamp --></div>
-<div id="x"><!-- X axis --></div>
-<div id="y"><!-- Y axis --></div>
-<div id="z"><!-- Z axis --></div>
-<button id="watch">Start</div>
-<div data-script="/scripts/device-motion.js"></div>
+
+<div data-script="scripts/device-motion.js"></div>
