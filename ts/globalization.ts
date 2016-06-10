@@ -1,23 +1,27 @@
 class GlobalizationPage  {
-    options: {}
-    init() {
-        $('language').addEventListener('click', this.language.bind(this));
-        $('locale').addEventListener('click', this.locale.bind(this));
-        $('currency').addEventListener('click', this.currency.bind(this));
+   
+    init():void {
+        $('language').addEventListener('click', this.language.bind(this))
+        $('locale').addEventListener('click', this.locale.bind(this))
+        $('currency').addEventListener('click', this.currency.bind(this))
     }
     
-    language() {
-        navigator.globalization.getPreferredLanguage(this.success.bind(this), this.error.bind(this));
+    language():void {
+        navigator.globalization.getPreferredLanguage(
+            this.success.bind(this), 
+            this.error.bind(this))
     }
     
-    locale() {
-        navigator.globalization.getLocaleName(this.success.bind(this), this.error.bind(this));
+    locale():void {
+        navigator.globalization.getLocaleName(
+            this.success.bind(this), 
+            this.error.bind(this))
     }
     
-    currency(currency) {
+    currency():void {
         navigator.globalization.getCurrencyPattern(
             'USD',
-            function (pattern) {
+             (pattern: GlobalizationCurrencyPattern) => {
                 console.log(
                     'pattern: '  + pattern.pattern  + '\n' +
                     'code: '     + pattern.code     + '\n' +
@@ -27,20 +31,20 @@ class GlobalizationPage  {
                     'grouping: ' + pattern.grouping
                 );
             },
-            function (error) { 
-                console.error('Error getting pattern: ', error);
+            (error: GlobalizationError) => { 
+                console.error('Error getting pattern: ', error)
             }
         );
     }
     
-    success(result) {
-        alert(JSON.stringify(result));
-        console.log('SUCCESS: ', result);
+    success(result:string):void {
+        alert(JSON.stringify(result))
+        console.log('SUCCESS: ', result)
     }
     
-    error(error) {
-        console.error('ERROR: ', error);
+    error(error:GlobalizationError) {
+        console.error('ERROR: ', error)
     }
 }
 
-new GlobalizationPage().init();
+new GlobalizationPage().init()

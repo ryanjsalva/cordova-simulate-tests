@@ -1,18 +1,17 @@
-class batteryStatus {
-    private static  options: any
-    private static status: HTMLElement
+class BatteryStatusView {
+    status: HTMLElement
     
     // initialize the view
-    static init () {
-        window.addEventListener("batterystatus", this.onStatusChange.bind(this), false);
-        window.addEventListener("batterylow", this.onStatusChange.bind(this), false);
-        window.addEventListener("batterycritical", this.onStatusChange.bind(this), false);
+    init () {
+        window.addEventListener("batterystatus", this.onStatusChange.bind(this), false)
+        window.addEventListener("batterylow", this.onStatusChange.bind(this), false)
+        window.addEventListener("batterycritical",  this.onStatusChange.bind(this), false)
         this.status = $('status');  
     }
 
-    static onStatusChange(status) {
+    onStatusChange(status:any) {
         var s = status.level;
-        var c;
+        var c:string;
         switch (true) {
             case (s <= 10):
                 c = '#cc0000';
@@ -33,5 +32,5 @@ class batteryStatus {
     }
 };
 
-batteryStatus.init();
+new BatteryStatusView().init();
 

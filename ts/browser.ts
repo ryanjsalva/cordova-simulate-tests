@@ -1,7 +1,7 @@
-class browser  {
-    private ref: InAppBrowser
+class BrowserView  {
+     ref: InAppBrowser
     
-    private   options: any = {
+     options: any = {
         location: 'yes',
         hidden: 'no',
         clearcache: 'yes',
@@ -22,17 +22,17 @@ class browser  {
     }
     
     // initialize the view
-     init () {
-        $('open').addEventListener('click', this.open);
+    init () {
+        $('open').addEventListener('click', this.open)
     }
     
-     open() {
-        this.ref = window.open('http://cordova.apache.org', '_blank', this.options);
-        this.ref.addEventListener('loadstart', (be) => {console.log(be)} );
-        this.ref.removeEventListener('loadstart', (be) => {console.log(be)});
+    open() {
+        this.ref = window.open('http://cordova.apache.org', '_blank', this.options)
+        this.ref.addEventListener('loadstart', (be) => {console.log(be)} )
+        this.ref.removeEventListener('loadstart', (be) => {console.log(be)})
     }
     
 };
 
-new browser().init();
+new BrowserView().init()
 

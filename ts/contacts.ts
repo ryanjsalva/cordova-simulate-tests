@@ -27,7 +27,7 @@ class ContactsPage  {
         navigator.contacts.pickContact(this.success.bind(this), this.error.bind(this));
     }
     
-    success(contact) {
+    success(contact:any) {
         if (typeof(contact) == 'array') {
             console.log('SUCCESS: ', contact.length, ' contacts found');
         } else {
@@ -35,7 +35,7 @@ class ContactsPage  {
         }
     }
     
-    error(error) {
+    error(error:any) {
         console.error(error);
     }
     

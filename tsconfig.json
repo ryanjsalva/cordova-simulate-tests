@@ -2,7 +2,8 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
+        "noEmitOnError": true,
         "sourceMap": true,
         "outDir": "www/scripts",
         "removeComments": true

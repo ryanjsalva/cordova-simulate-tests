@@ -1,6 +1,5 @@
-class camera  {
-
-    private options: CameraOptions =  {
+class CameraView  {
+    options: CameraOptions =  {
         quality: 50,
         destinationType: Camera.DestinationType.FILE_URI,
         sourceType: Camera.PictureSourceType.CAMERA,
@@ -11,45 +10,43 @@ class camera  {
     }
     
     // initialize the view
-    init() {
-        $('file-picker').addEventListener('click', this.filePicker.bind(this));
-        $('get-picture').addEventListener('click', this.getPicture.bind(this));
-        $('get-picture-thumbnail').addEventListener('click', this.thumbnails.bind(this));
+    init():void {
+        $('file-picker').addEventListener('click', this.filePicker.bind(this))
+        $('get-picture').addEventListener('click', this.getPicture.bind(this))
+        $('get-picture-thumbnail').addEventListener('click', this.thumbnails.bind(this))
     }
     
     // camera returned a photo
-    success(img) {
-        console.log('success: ', img);
-        $('photo').style.backgroundImage = 'url('+ img + ')';
+    success(img:string):void {
+        console.log('success: ', img)
+        $('photo').style.backgroundImage = 'url('+ img + ')'
     }
 
     // camera returned an error
-    error(msg) {
-        alert(msg);
-        console.error('error: ', msg);
+    error(msg:string):void {
+        alert(msg)
+        console.error('error: ', msg)
     }
     
     // getPicture
-    getPicture() {
-        console.log('getPicture()');
-        navigator.camera.getPicture(this.success, this.error, this.options);
+    getPicture():void {
+        console.log('getPicture()')
+        navigator.camera.getPicture(this.success, this.error, this.options)
     }
     
     // get file URI
-    filePicker() {
-        console.log('filePicker()');
-        var o = this.options;
-        o.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
-        navigator.camera.getPicture(this.success, this.error, o);
+    filePicker():void {
+        console.log('filePicker()')
+        this.options.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM
+        navigator.camera.getPicture(this.success, this.error, this.options)
     }
     
     // resize pictures as thumbnails
     thumbnails(){
-        console.log('thumbnails()');
-        var o = this.options;
-        o.targetHeight = 100;
-        o.targetWidth = 100;
-        navigator.camera.getPicture(this.success, this.error, o);        
+        console.log('thumbnails()')
+        this.options.targetHeight = 100
+        this.options.targetWidth = 100
+        navigator.camera.getPicture(this.success, this.error, this.options)       
     }    
 }
-new camera().init();
+new CameraView().init()

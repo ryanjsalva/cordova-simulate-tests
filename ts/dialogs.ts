@@ -1,23 +1,22 @@
 class DialogsPage  {
-    private options: any = {}
     
-    init() {
-        $('confirm').addEventListener('click', this.confirm.bind(this));
-        $('alert').addEventListener('click', this.alert.bind(this));
-        $('prompt').addEventListener('click', this.prompt.bind(this));
-        $('beep').addEventListener('click', this.beep.bind(this));
+    init():void {
+        $('confirm').addEventListener('click', this.confirm.bind(this))
+        $('alert').addEventListener('click', this.alert.bind(this))
+        $('prompt').addEventListener('click', this.prompt.bind(this))
+        $('beep').addEventListener('click', this.beep.bind(this))
     }
     
-    confirm() {
+    confirm():void {
         navigator.notification.confirm(
             'You are the winner',   // message
             this.callBack,          // callback
             'Game Over',            // title
             ['OK', 'Cancel']        // buttons
-        );
+        )
     }
     
-    alert() {
+    alert():void {
         navigator.notification.alert(
             'You are the winner!',  // message
             this.callBack,          // callback
@@ -26,7 +25,7 @@ class DialogsPage  {
         );
     }
     
-    prompt() {
+    prompt():void {
         navigator.notification.prompt(
             'You are the winner!',  // message
             this.callBack,          // callback
@@ -36,14 +35,14 @@ class DialogsPage  {
         );
     }
     
-    beep() {
-        navigator.notification.beep(2);
+    beep():void {
+        navigator.notification.beep(2)
     }
     
     callBack():void {
-        console.log('Dialog Callback: ');
+        console.log('Dialog Callback: ')
     }
     
 }
 
-new DialogsPage().init();
+new DialogsPage().init()
