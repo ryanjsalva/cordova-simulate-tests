@@ -1,50 +1,50 @@
-app.camera = {
+class camera  {
 
-    options: {
+    private options: CameraOptions =  {
         quality: 50,
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.CAMERA,
-        encodingType: navigator.camera.EncodingType.JPEG,
-        mediaType: navigator.camera.MediaType.PICTURE,
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
         allowEdit: true,
         correctOrientation: true  //Corrects Android orientation quirks
-    },
+    }
     
     // initialize the view
-    init: function () {
+    init() {
         $('file-picker').addEventListener('click', this.filePicker.bind(this));
         $('get-picture').addEventListener('click', this.getPicture.bind(this));
         $('get-picture-thumbnail').addEventListener('click', this.thumbnails.bind(this));
-    },
+    }
     
     // camera returned a photo
-    success: function(img) {
+    success(img) {
         console.log('success: ', img);
         $('photo').style.backgroundImage = 'url('+ img + ')';
-    },
+    }
 
     // camera returned an error
-    error: function(msg) {
+    error(msg) {
         alert(msg);
         console.error('error: ', msg);
-    },
+    }
     
     // getPicture
-    getPicture: function() {
+    getPicture() {
         console.log('getPicture()');
         navigator.camera.getPicture(this.success, this.error, this.options);
-    },
+    }
     
     // get file URI
-    filePicker: function() {
+    filePicker() {
         console.log('filePicker()');
         var o = this.options;
         o.sourceType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
         navigator.camera.getPicture(this.success, this.error, o);
-    },
+    }
     
     // resize pictures as thumbnails
-    thumbnails: function() {
+    thumbnails(){
         console.log('thumbnails()');
         var o = this.options;
         o.targetHeight = 100;
@@ -52,4 +52,4 @@ app.camera = {
         navigator.camera.getPicture(this.success, this.error, o);        
     }    
 }
-app.camera.init();
+new camera().init();

@@ -1,31 +1,32 @@
-app.dialogs = {
-    options: {},
-    init: function() {
+class DialogsPage  {
+    private options: any = {}
+    
+    init() {
         $('confirm').addEventListener('click', this.confirm.bind(this));
         $('alert').addEventListener('click', this.alert.bind(this));
         $('prompt').addEventListener('click', this.prompt.bind(this));
         $('beep').addEventListener('click', this.beep.bind(this));
-    },
+    }
     
-    confirm: function() {
+    confirm() {
         navigator.notification.confirm(
             'You are the winner',   // message
             this.callBack,          // callback
             'Game Over',            // title
             ['OK', 'Cancel']        // buttons
         );
-    },
+    }
     
-    alert: function() {
+    alert() {
         navigator.notification.alert(
             'You are the winner!',  // message
             this.callBack,          // callback
             'Game Over',            // title
             'Done'                  // buttons
         );
-    },
+    }
     
-    prompt: function() {
+    prompt() {
         navigator.notification.prompt(
             'You are the winner!',  // message
             this.callBack,          // callback
@@ -33,16 +34,16 @@ app.dialogs = {
             ['Done','Cancel'],      // buttons
             'default text'          // default text
         );
-    },
+    }
     
-    beep: function() {
+    beep() {
         navigator.notification.beep(2);
-    },
+    }
     
-    callBack: function(i) {
-        console.log('Dialog Callback: ', i);
+    callBack():void {
+        console.log('Dialog Callback: ');
     }
     
 }
 
-app.dialogs.init();
+new DialogsPage().init();

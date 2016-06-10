@@ -1,7 +1,9 @@
-var app = {
-    
-    // initialize the app ondeviceready
-    init: function() {
+ class  app {
+    private static history : Array<any> = []
+    private static title: HTMLElement;
+    private static back: HTMLElement;
+
+    static init(){
         this.history = [];          // SPA history stack
         this.title = $('title');    // reference to the title bar
         this.back = $('back');      // reference to the back button
@@ -11,16 +13,13 @@ var app = {
         }.bind(this));
 
         this.goto('navigation.html');
-    },
-    
-    // navigation router
-    goto: function(url, direction) {
-        
-        // add this view to the history stack
+    }
+
+    static goto(url:string, direction:string = ""){
         url = this.historify(url);
         
         // if the history stack is empty, hide the back button
-        this.back.style.opacity = (this.history.length > 1)? 1 : 0;
+        this.back.style.opacity = (this.history.length > 1)? "1" : "0";
         
         // load new views with an XHR request
         var xhr= new XMLHttpRequest();
@@ -43,11 +42,20 @@ var app = {
             this.page = el;                     // create a reference to the active view
 
         }.bind(this);
-        xhr.send();    
-    },
-    
-    // animate a new view onto the screen
-    enter: function (el, direction) {
+        xhr.send();
+    }
+
+    static historify(url) {
+        if (url == 'back') {
+            this.history.pop();
+            url = this.history[this.history.length-1];
+        } else {
+            this.history.push(url);
+        }
+        return url;
+    }
+
+    static enter(el: HTMLElement, direction: string) {
         if (!el) return; // paranoia
         
         // load the new view off-screen
@@ -61,10 +69,9 @@ var app = {
             el.style.transform = 'translateX(0)';
         }, 50);
 
-    },
-    
-    // animate an outgoing view off of the screen
-    exit: function (el, direction) {
+    }
+
+     static exit (el: HTMLElement, direction:string) {
         if (!el) return; // paranoia
 
         // find what constitutes "off screen"
@@ -80,11 +87,9 @@ var app = {
         window.setTimeout( function() {
             el.parentElement.removeChild(el);
         }, 1000);
+    }
 
-    },
-    
-    // create router links and load scripts
-    hydrate: function(el) {
+     static hydrate(el: HTMLElement) {
         var hrefs = el.querySelectorAll('*[data-href]');
         for ( var i=0; i<hrefs.length; i++ ) {
             hrefs[i].addEventListener('click', this.goto.bind(this, hrefs[i].getAttribute('data-href')), false);
@@ -100,27 +105,16 @@ var app = {
             this.title.innerHTML = '';
             this.title.appendChild(title[0]);
         }
-    },
-    
-    // manage the history stack
-    historify: function(url) {
-        if (url == 'back') {
-            this.history.pop();
-            url = this.history[this.history.length-1];
-        } else {
-            this.history.push(url);
-        }
-        return url;
-    },
-    
-    // require scripts
-    require: function(src) {
+    }
+
+    static require(src:string) {
         var el = document.createElement('script');
         el.src = src;
         el.async = true;
         document.head.appendChild(el);   
     }
 }
+
 
 // convenience functions
 function $(str) {

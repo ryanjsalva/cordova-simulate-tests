@@ -1,11 +1,12 @@
-app.vibration = {
-    options: {},
-    init: function() {
+class VibrationPage  {
+    options:any = {}
+    button: HTMLElement
+    init() {
         this.button = $('start');
         this.button.addEventListener('click', this.vibrate.bind(this));
-    },
+    }
     
-    vibrate: function() {
+    vibrate() {
         navigator.vibrate([500,500,500,500,500]);
         this.button.className = 'shake';
         window.setTimeout(function(e){
@@ -14,4 +15,4 @@ app.vibration = {
     }
 };
 
-app.vibration.init();
+new VibrationPage().init();

@@ -1,5 +1,7 @@
-app.browser = {
-    options: {
+class browser  {
+    private ref: InAppBrowser
+    
+    private   options: any = {
         location: 'yes',
         hidden: 'no',
         clearcache: 'yes',
@@ -17,23 +19,20 @@ app.browser = {
         transitionstyle: 'coververtical',
         toolbarposition: 'bottom',
         fullscreen: 'yes'
-    },
+    }
     
     // initialize the view
-    init: function () {
-        $('open').addEventListener('click', this.open.bind(this));
-    },
-    
-    open: function() {
-        this.ref = cordova.InAppBrowser.open('http://cordova.apache.org', '_blank', this.options);
-        this.ref.addEventListener('loadstart', this.callBack.bind(this));
-        this.ref.removeEventListener('loadstart', this.callback.bind(this));
-    },
-    
-    callBack: function(e) {
-        console.log(e);
+     init () {
+        $('open').addEventListener('click', this.open);
     }
+    
+     open() {
+        this.ref = window.open('http://cordova.apache.org', '_blank', this.options);
+        this.ref.addEventListener('loadstart', (be) => {console.log(be)} );
+        this.ref.removeEventListener('loadstart', (be) => {console.log(be)});
+    }
+    
 };
 
-app.browser.init();
+new browser().init();
 

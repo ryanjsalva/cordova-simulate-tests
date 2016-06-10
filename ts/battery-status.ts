@@ -1,16 +1,16 @@
-app.batteryStatus = {
-    options: {
-    },
+class batteryStatus {
+    private static  options: any
+    private static status: HTMLElement
     
     // initialize the view
-    init: function () {
+    static init () {
         window.addEventListener("batterystatus", this.onStatusChange.bind(this), false);
         window.addEventListener("batterylow", this.onStatusChange.bind(this), false);
         window.addEventListener("batterycritical", this.onStatusChange.bind(this), false);
         this.status = $('status');  
-    },
+    }
 
-    onStatusChange: function (status) {
+    static onStatusChange(status) {
         var s = status.level;
         var c;
         switch (true) {
@@ -30,8 +30,8 @@ app.batteryStatus = {
         this.status.innerText = s;
 
         console.log("Level: " + status.level + " isPlugged: " + status.isPlugged);
-    },
+    }
 };
 
-app.batteryStatus.init();
+batteryStatus.init();
 

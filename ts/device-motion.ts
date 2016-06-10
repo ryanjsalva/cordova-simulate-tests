@@ -1,6 +1,15 @@
-app.accelerometer = {
-    options: {},
-    init: function() {
+class AccelerometerPage  {
+    private options: any = {}
+    private x : HTMLElement
+    private y : HTMLElement
+    private z : HTMLElement
+    private m : HTMLElement
+    private s : HTMLElement
+    private ms : HTMLElement
+    private w : WatchHandle
+    private button : HTMLElement
+
+    init() {
         console.log('Initialize accelerometer');
         this.x = $('x');
         this.y = $('y');
@@ -8,12 +17,12 @@ app.accelerometer = {
         this.m = $('m');
         this.s = $('s');
         this.ms = $('ms');
-        this.w = false;
+        this.w = null;
         this.button = $('watch');
         this.button.addEventListener('click', this.watch.bind(this));
-    },
+    }
     
-    watch: function() {
+    watch() {
         console.log('Start watching accelerometer', this.w);
         if (this.w) {
             navigator.accelerometer.clearWatch(this.w);
@@ -25,21 +34,21 @@ app.accelerometer = {
             this.button.className = 'stop';
             this.button.innerText = 'Stop';
         }
-    },
+    }
     
-    success: function(a) {
+    success(a) {
         var t = new Date(a.timestamp);
         this.x.innerText = a.x;
         this.y.innerText = a.y;
         this.z.innerText = a.z;
-        this.m.innerText = t.getMinutes();
-        this.s.innerText = t.getSeconds();
-        this.ms.innerText = t.getMilliseconds();
-    },
+        this.m.innerText = t.getMinutes().toString();
+        this.s.innerText = t.getSeconds().toString();
+        this.ms.innerText = t.getMilliseconds().toString();
+    }
     
-    error: function (error) {
+    error (error) {
         console.error('ERROR Accelerometer: ', error);
     }
 };
 
-app.accelerometer.init();
+new AccelerometerPage().init();

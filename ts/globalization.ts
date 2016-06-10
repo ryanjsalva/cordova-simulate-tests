@@ -1,20 +1,20 @@
-app.globalization = {
-    options: {},
-    init: function() {
+class GlobalizationPage  {
+    options: {}
+    init() {
         $('language').addEventListener('click', this.language.bind(this));
         $('locale').addEventListener('click', this.locale.bind(this));
         $('currency').addEventListener('click', this.currency.bind(this));
-    },
+    }
     
-    language: function() {
+    language() {
         navigator.globalization.getPreferredLanguage(this.success.bind(this), this.error.bind(this));
-    },
+    }
     
-    locale: function() {
+    locale() {
         navigator.globalization.getLocaleName(this.success.bind(this), this.error.bind(this));
-    },
+    }
     
-    currency: function(currency) {
+    currency(currency) {
         navigator.globalization.getCurrencyPattern(
             'USD',
             function (pattern) {
@@ -31,16 +31,16 @@ app.globalization = {
                 console.error('Error getting pattern: ', error);
             }
         );
-    },
+    }
     
-    success: function(result) {
+    success(result) {
         alert(JSON.stringify(result));
         console.log('SUCCESS: ', result);
-    },
+    }
     
-    error: function(error) {
+    error(error) {
         console.error('ERROR: ', error);
     }
 }
 
-app.globalization.init();
+new GlobalizationPage().init();

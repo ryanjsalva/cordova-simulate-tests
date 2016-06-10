@@ -1,45 +1,45 @@
-app.contacts = {
+class ContactsPage  {
 
-    options: { },
+    private options = { }
     
     // initialize the view
-    init: function () {
+    init () {
         console.log('init contacts');
         $('create-contact').addEventListener('click', this.create.bind(this));
         $('find-contact').addEventListener('click', this.find.bind(this));
         $('pick-contact').addEventListener('click', this.pick.bind(this));
-    },
+    }
     
-    create: function() {
+    create() {
         var c = navigator.contacts.create(this.sampleContact);
         c.save(this.success, this.error);
         console.log('Create Contact: ', JSON.stringify(c));
-    },
+    }
     
-    find: function() {
+    find() {
         console.log('Find Contacts');
-        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+        var fields = ["displayName","fieldType" ];
         navigator.contacts.find(fields, this.success.bind(this), this.error.bind(this), this.options);
-    },
+    }
     
-    pick: function() {
+    pick() {
         console.log('Pick Contact');
         navigator.contacts.pickContact(this.success.bind(this), this.error.bind(this));
-    },
+    }
     
-    success: function(contact) {
+    success(contact) {
         if (typeof(contact) == 'array') {
-            console.log('SUCCESS: ', contacts.length, ' contacts found');
+            console.log('SUCCESS: ', contact.length, ' contacts found');
         } else {
             console.log('SUCCESS: ', JSON.stringify(contact));
         }
-    },
+    }
     
-    error: function(error) {
+    error(error) {
         console.error(error);
-    },
+    }
     
-    sampleContact: {
+    private sampleContact: any = {
         displayName: 'Ryan J. Salva',
         name: {
             familyName: 'Salva',
@@ -58,22 +58,9 @@ app.contacts = {
             new ContactField('home', 'ryanjsalva@gmail.com', true)
         ],
         addresses: [
-            new ContactAddress({
-                type: 'work',
-                streetAddress: 'One Microsoft Way',
-                locality: 'Redmond',
-                region: 'WA',
-                postalCode: '99999',
-                country: 'USA'
-            }),
-            new ContactAddress({
-                type: 'home',
-                streetAddress: '1111 Space Cat Drive',
-                locality: 'Seattle',
-                region: 'WA',
-                postalCode: '88888',
-                country: 'USA'
-            })
+            new ContactAddress(true, "work", "format", "one ms way", "Redmond", "WA", "98052", "USA"),
+            new ContactAddress(true, "home", "format", "one cat way", "Seattle", "WA", "98052", "USA"),
+            
         ],
         ims: [
             new ContactField('work', 'xxx@gmail.com', false),
@@ -92,4 +79,4 @@ app.contacts = {
     }
 };
 
-app.contacts.init();
+new ContactsPage().init();
