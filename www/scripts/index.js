@@ -10,7 +10,7 @@ var app = {
             this.goto('back', 'left');
         }.bind(this));
 
-        this.goto('navigation.html');
+        this.goto('navigation');
     },
     
     // navigation router
@@ -108,6 +108,7 @@ var app = {
             this.history.pop();
             url = this.history[this.history.length-1];
         } else {
+            url = 'app/' + url + '/' + url + '.html';
             this.history.push(url);
         }
         return url;

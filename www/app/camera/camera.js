@@ -12,6 +12,7 @@ app.camera = {
     
     // initialize the view
     init: function () {
+        console.log('loading camera');
         $('file-picker').addEventListener('click', this.filePicker.bind(this));
         $('get-picture').addEventListener('click', this.getPicture.bind(this));
         $('get-picture-thumbnail').addEventListener('click', this.thumbnails.bind(this));
