@@ -9,7 +9,6 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="BackgroundColor" value="0xff0000ff" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-camera" spec="~2.2.0" />
     <plugin name="cordova-plugin-device-motion" spec="~1.2.1" />
