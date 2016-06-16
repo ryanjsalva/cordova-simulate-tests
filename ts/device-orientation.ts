@@ -1,18 +1,16 @@
-app.deviceOrientation = {
-    options: {
-        frequency: 500
-    },
-    
-    init: function() {
-        this.ref = false;
+class DeviceOrientationPage  {
+    options: any
+    ref: number
+    init() {
+        this.ref = 0
         $('watch').addEventListener('click', this.watch.bind(this));
-    },
+    }
     
-    watch: function() {
+    watch() {
         var button = $('watch');
-        if (this.ref) {
+        if (this.ref!=0) {
             navigator.compass.clearWatch(this.ref);
-            this.ref = false;
+            this.ref = 0;
             button.innerText = 'Start';
             button.className = '';
         } else {
@@ -20,16 +18,16 @@ app.deviceOrientation = {
             button.innerText = 'Stop';
             button.className = 'stop';            
         }
-    },
+    }
     
-    success: function(heading) {
-        $('heading').innerText = heading.magneticHeading;
+    success(heading: CompassHeading) {
+        $('heading').innerText = heading.magneticHeading.toString();
         console.log(heading);
-    },
+    }
     
-    error: function(error) {
+    error(error:any) {
         // error codes per source code, https://github.com/apache/cordova-plugin-device-orientation/blob/master/www/CompassError.js#L31
-        var msg;
+        var msg : string;
         switch (error.code) {
             case 0:
                 msg = 'Compass: internal error';
@@ -43,4 +41,4 @@ app.deviceOrientation = {
     }
 }
 
-app.deviceOrientation.init();
+new DeviceOrientationPage().init();

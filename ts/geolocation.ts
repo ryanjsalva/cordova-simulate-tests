@@ -1,41 +1,41 @@
-app.geolocation = {
-    options: { },
-    
+class GeolocationPage  {
+    options: any
+    w: number
     // initialize the view
-    init: function () {
+    init () {
         $('locate').addEventListener('click', this.locate.bind(this));
         $('watch').addEventListener('click', this.watch.bind(this));
-        this.w = false;
-    },
+        this.w = 0;
+    }
     
 
     // locate()
     // This method returns the GPS coordinates exactly once
-    locate: function() {
+    locate() {
         navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error.bind(this));
-    },
+    }
     
     // watch()
     // This method polls the current position every 500ms
     // returns the GPS coordinates
-    watch: function() {
+    watch() {
         var button = $('watch');
-        if (this.w) {
+        if (this.w!=0) {
             navigator.geolocation.clearWatch(this.w);
             button.innerText = 'Watch';
             button.className = '';
-            this.w = false;
+            this.w = 0;
         } else {
             this.w = navigator.geolocation.watchPosition(this.success.bind(this), this.error.bind(this), { timeout: 500 });
             button.innerText = 'Stop';
             button.className = 'stop';
         }
-    },
+    }
 
     // onSuccess Callback
     // This method accepts a Position object, which contains the
     // current GPS coordinates
-    success: function(position) {
+    success(position: Position) {
         console.log(
             'Latitude: '          + position.coords.latitude          + '\n' +
             'Longitude: '         + position.coords.longitude         + '\n' +
@@ -46,11 +46,11 @@ app.geolocation = {
             'Speed: '             + position.coords.speed             + '\n' +
             'Timestamp: '         + position.timestamp                + '\n'
         );
-    },
+    }
 
     // onError Callback 
     // Receives a PositionError object
-    error: function (error) {
+    error (error:PositionError) {
         console.error(
             'code: '    + error.code    + '\n' +
             'message: ' + error.message + '\n'
@@ -58,5 +58,5 @@ app.geolocation = {
     }
 };
 
-app.geolocation.init();
+new GeolocationPage().init();
 

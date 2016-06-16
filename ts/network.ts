@@ -1,17 +1,17 @@
-app.network = {
-    options: {},
-    init: function() {
+class NetworkPage  {
+   connection: HTMLElement
+    init() {
         console.log('init network');
         this.connection = $('connection-type');
         this.check();
         document.addEventListener("offline", this.offline.bind(this), false);
         document.addEventListener("online", this.online.bind(this), false);
-    },
+    }
     
-    check: function() {
+    check() {
         var s = navigator.connection.type;
 
-        var states = {};
+        var states : any = {};
         states[Connection.UNKNOWN]  = 'Unknown connection';
         states[Connection.ETHERNET] = 'Ethernet connection';
         states[Connection.WIFI]     = 'WiFi connection';
@@ -22,16 +22,15 @@ app.network = {
         states[Connection.NONE]     = 'No network connection';
 
         this.connection.innerText = states[s];
-    },
+    }
     
-    online: function() {
+    online() {
         console.log('Coming online');
-    },
+    }
     
-    offline: function() {
+    offline() {
         console.log('Going offline');
     }
     
 }
-
-app.network.init();
+new NetworkPage().init()

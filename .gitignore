@@ -8,3 +8,7 @@ plugins/
 config/
 simulation/
 www/scripts/
+
+.vs/
+build/
+bin/
