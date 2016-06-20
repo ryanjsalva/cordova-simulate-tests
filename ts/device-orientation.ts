@@ -1,5 +1,5 @@
 class DeviceOrientationPage  {
-    options: any
+   options: CompassOptions
     ref: number
     init() {
         this.ref = 0
@@ -14,7 +14,9 @@ class DeviceOrientationPage  {
             button.innerText = 'Start';
             button.className = '';
         } else {
-            this.ref = navigator.compass.watchHeading(this.success.bind(this), this.error.bind(this), this.options);
+            this.ref = navigator.compass.watchHeading(
+                this.success.bind(this), this.error.bind(this), 
+                this.options);
             button.innerText = 'Stop';
             button.className = 'stop';            
         }
@@ -25,13 +27,13 @@ class DeviceOrientationPage  {
         console.log(heading);
     }
     
-    error(error:any) {
+    error(error:CompassError) {
         // error codes per source code, https://github.com/apache/cordova-plugin-device-orientation/blob/master/www/CompassError.js#L31
         var msg : string;
         switch (error.code) {
-            case 0:
+            case CompassError.COMPASS_INTERNAL_ERR:
                 msg = 'Compass: internal error';
-            case 20:
+            case CompassError.COMPASS_NOT_SUPPORTED:
                 msg = 'Compass: not supported';
             default:
                 msg = 'Compass: unknown error';

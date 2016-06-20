@@ -1,5 +1,5 @@
 class GeolocationPage  {
-    options: any
+   
     w: number
     // initialize the view
     init () {

@@ -30,9 +30,8 @@ class BrowserView  {
         this.ref = window.open('http://cordova.apache.org', '_blank', this.options)
         this.ref.addEventListener('loadstart', (be) => {console.log(be)} )
         this.ref.removeEventListener('loadstart', (be) => {console.log(be)})
-    }
-    
-};
+    }   
+}
 
 new BrowserView().init()
 

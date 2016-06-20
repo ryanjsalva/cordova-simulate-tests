@@ -1,15 +1,13 @@
-app.dbmeter = {
-
-    options: {
-    },
-    
-    init: function () {
+class DBMeterPage {
+    listening: boolean
+    db: HTMLElement
+    init () {
         this.listening = false;
         this.db = $('db');
         $('start').addEventListener('click', this.listen.bind(this));
-    },
+    }
     
-    listen: function() {
+    listen () {
         var button = $('start');
         if (this.listening) {
             button.className = '';
@@ -22,10 +20,10 @@ app.dbmeter = {
             DBMeter.start(this.success.bind(this), this.error.bind(this));
             this.listening = true;
         }
-    },
+    }
     
-    success: function(db) {
-        var c;
+    success(db:any):any {
+        var c :any;
         switch (true) {
             case (db > 70 && db < 90):
                 c = '#f7941d';
@@ -42,11 +40,11 @@ app.dbmeter = {
         this.db.style.backgroundColor = c;
 
         console.log('DBMeter: ', db);
-    },
-    
-    error: function(error) {
-        console.error('ERROR: ', error);
     }
-};
+    
+    error(err:any) {
+        console.error('ERROR: ', err);
+    }
+}
 
-app.dbmeter.init();
+new DBMeterPage().init()

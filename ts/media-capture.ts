@@ -1,6 +1,6 @@
 class MediaCapture  {
 
-    init():void {
+    init() {
         $('image').addEventListener('click', this.image.bind(this))
         $('audio').addEventListener('click', this.audio.bind(this))
         $('video').addEventListener('click', this.video.bind(this))
