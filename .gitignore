@@ -12,3 +12,6 @@ www/scripts/
 .vs/
 build/
 bin/
+bld/
+*.user
+*.suo
