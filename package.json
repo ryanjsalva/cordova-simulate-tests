@@ -2,9 +2,7 @@
   "name": "cordova-simulate-test",
   "version": "0.0.1",
   "devDependencies": {
-    "typescript": "^1.8.10",
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^2.13.6"
+    "typescript": "^1.8.10"
   },
   "scripts": {
     "build": "node_modules/.bin/tsc"

@@ -127,8 +127,8 @@ function $$(str:string) {
 }
 
 // app lifecycle events
-document.addEventListener( 'deviceready', function(e) { new app().init(); }, false )
-document.addEventListener( 'pause', function(e) { console.log('pause event'); }, false )
-document.addEventListener( 'resume', function(e) { console.log('resume event'); }, false )
-document.addEventListener( 'searchButton', function(e) { console.log('search event'); }, false )
-document.addEventListener( 'backButton', function(e) { console.log('back event'); }, false )
+document.addEventListener( 'deviceready', function(e:any ) { new app().init(); }, false )
+document.addEventListener('pause', function (e: any ) { console.log('pause event'); }, false )
+document.addEventListener('resume', function (e: any ) { console.log('resume event'); }, false )
+document.addEventListener('searchButton', function (e: any ) { console.log('search event'); }, false )
+document.addEventListener('backButton', function (e: any ) { console.log('back event'); }, false )
