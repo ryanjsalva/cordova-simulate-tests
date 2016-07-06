@@ -1,50 +1,47 @@
 class DBMeterPage {
-    listening: boolean
-    db: HTMLElement
-    init () {
+    listening: boolean;
+    db: HTMLElement;
+    init(): void {
         this.listening = false;
-        this.db = $('db');
-        $('start').addEventListener('click', this.listen.bind(this));
+        this.db = $("db");
+        $("start").addEventListener("click", this.listen.bind(this));
     }
-    
-    listen () {
-        var button = $('start');
+    listen(): void {
+        var button :HTMLElement= $("start");
         if (this.listening) {
-            button.className = '';
-            button.innerText = 'Start';
+            button.className = "";
+            button.innerText = "Start";
             DBMeter.stop(this.success.bind(this), this.error.bind(this));
             this.listening = false;
         } else {
-            button.className = 'stop';
-            button.innerText = 'Stop';
+            button.className = "stop";
+            button.innerText = "Stop";
             DBMeter.start(this.success.bind(this), this.error.bind(this));
             this.listening = true;
         }
     }
-    
-    success(db:any):any {
-        var c :any;
+    success(db: number): void {
+        var c :string;
         switch (true) {
             case (db > 70 && db < 90):
-                c = '#f7941d';
+                c = "#f7941d";
                 break;
             case (db >= 90):
-                c = 'cc0000';
+                c = "cc0000";
                 break;
             default:
-                c = '#22c064';
+                c = "#22c064";
                 break;
         }
 
-        this.db.style.width = db + '%';
+        this.db.style.width = db + "%";
         this.db.style.backgroundColor = c;
 
-        console.log('DBMeter: ', db);
+        console.log("DBMeter: ", db);
     }
-    
-    error(err:any) {
-        console.error('ERROR: ', err);
+    error(err: any): void {
+        console.error("ERROR: ", err);
     }
 }
 
-new DBMeterPage().init()
+new DBMeterPage().init();

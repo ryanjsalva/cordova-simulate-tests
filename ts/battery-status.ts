@@ -1,36 +1,35 @@
 class BatteryStatusView {
-    status: HTMLElement
-    
+    status: HTMLElement;
     // initialize the view
-    init () {
-        window.addEventListener("batterystatus", this.onStatusChange.bind(this), false)
-        window.addEventListener("batterylow", this.onStatusChange.bind(this), false)
-        window.addEventListener("batterycritical",  this.onStatusChange.bind(this), false)
-        this.status = $('status');  
+    init ():void {
+        window.addEventListener("batterystatus", this.onStatusChange.bind(this), false);
+        window.addEventListener("batterylow", this.onStatusChange.bind(this), false);
+        window.addEventListener("batterycritical",  this.onStatusChange.bind(this), false);
+        this.status = $("status");
     }
 
-    onStatusChange(status:any) {
-        var s = status.level;
+    onStatusChange(batStat:BatteryStatusEvent):void {
+        var s: number = batStat.level;
         var c:string;
         switch (true) {
             case (s <= 10):
-                c = '#cc0000';
+                c = "#cc0000";
                 break;
             case (s > 10 && s <= 20):
-                c = '#f7941d';
+                c = "#f7941d";
                 break;
             default:
-                c = '#22c064';
+                c = "#22c064";
                 break;
         }
 
-        this.status.style.width = s + '%';
+        this.status.style.width = s + "%";
         this.status.style.backgroundColor = c;
-        this.status.innerText = s;
+        this.status.innerText = s.toString();
 
-        console.log("Level: " + status.level + " isPlugged: " + status.isPlugged);
+        console.log("Level: " + batStat.level + " isPlugged: " + batStat.isPlugged);
     }
-};
+}
 
 new BatteryStatusView().init();
 

@@ -1,59 +1,55 @@
 class GeolocationPage  {
-   
-    w: number
+    w: number;
     // initialize the view
-    init () {
-        $('locate').addEventListener('click', this.locate.bind(this));
-        $('watch').addEventListener('click', this.watch.bind(this));
+    init(): void {
+        $("locate").addEventListener("click", this.locate.bind(this));
+        $("watch").addEventListener("click", this.watch.bind(this));
         this.w = 0;
     }
-    
-
     // locate()
-    // This method returns the GPS coordinates exactly once
-    locate() {
+    // this method returns the GPS coordinates exactly once
+    locate(): void {
         navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error.bind(this));
     }
-    
     // watch()
-    // This method polls the current position every 500ms
+    // this method polls the current position every 500ms
     // returns the GPS coordinates
-    watch() {
-        var button = $('watch');
-        if (this.w!=0) {
+    watch(): void {
+        var button:HTMLElement = $("watch");
+        if (this.w!==0) {
             navigator.geolocation.clearWatch(this.w);
-            button.innerText = 'Watch';
-            button.className = '';
+            button.innerText = "Watch";
+            button.className = "";
             this.w = 0;
         } else {
             this.w = navigator.geolocation.watchPosition(this.success.bind(this), this.error.bind(this), { timeout: 500 });
-            button.innerText = 'Stop';
-            button.className = 'stop';
+            button.innerText = "Stop";
+            button.className = "stop";
         }
     }
 
     // onSuccess Callback
-    // This method accepts a Position object, which contains the
+    // this method accepts a Position object, which contains the
     // current GPS coordinates
-    success(position: Position) {
+    success(position: Position): void {
         console.log(
-            'Latitude: '          + position.coords.latitude          + '\n' +
-            'Longitude: '         + position.coords.longitude         + '\n' +
-            'Altitude: '          + position.coords.altitude          + '\n' +
-            'Accuracy: '          + position.coords.accuracy          + '\n' +
-            'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-            'Heading: '           + position.coords.heading           + '\n' +
-            'Speed: '             + position.coords.speed             + '\n' +
-            'Timestamp: '         + position.timestamp                + '\n'
+            "Latitude: "          + position.coords.latitude          + "\n" +
+            "Longitude: "         + position.coords.longitude         + "\n" +
+            "Altitude: "          + position.coords.altitude          + "\n" +
+            "Accuracy: "          + position.coords.accuracy          + "\n" +
+            "Altitude Accuracy: " + position.coords.altitudeAccuracy  + "\n" +
+            "Heading: "           + position.coords.heading           + "\n" +
+            "Speed: "             + position.coords.speed             + "\n" +
+            "Timestamp: "         + position.timestamp                + "\n"
         );
     }
 
     // onError Callback 
-    // Receives a PositionError object
-    error (error:PositionError) {
+    // receives a PositionError object
+    error(error: PositionError): void {
         console.error(
-            'code: '    + error.code    + '\n' +
-            'message: ' + error.message + '\n'
+            "code: "    + error.code    + "\n" +
+            "message: " + error.message + "\n"
         );
     }
 };
