@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "outDir": "www/scripts",
+        "removeComments": true
+    },
+    "exclude": [
+        "node_modules",
+        "www/scripts"
+    ]}
